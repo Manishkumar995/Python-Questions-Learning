@@ -3,9 +3,10 @@
 Nth Highest salary= When asked to find the N-th highest salary, the key challenge is that salaries may have duplicates, so we can't simply pick the N-th row from a sorted list.
 
 Understanding the Problem:
-
 -If there are multiple employees with the same salary, we should consider unique salaries when ranking.
+
 -If N is larger than the number of unique salaries, we should return null because there isn't an N-th highest salary.
+
 -If N is zero or negative, it's an invalid input, and we should also return null.
 
 ``` python
