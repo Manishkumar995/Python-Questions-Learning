@@ -8,7 +8,7 @@ Understanding the Problem:
 -If N is larger than the number of unique salaries, we should return null because there isn't an N-th highest salary.
 -If N is zero or negative, it's an invalid input, and we should also return null.
 
-' ' ' python
+``` python
 import pandas as pd
 
 def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
@@ -24,5 +24,5 @@ def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
 
     # Get the N-th highest salary
     nth_salary = unique_salaries.iloc[N-1]
-    ''' python
+   `
     
