@@ -83,7 +83,8 @@ def delete_duplicate_emails(person: pd.DataFrame) -> None:
 For duplicate emails, the row with highest id is kept
 One-line summary-
 The lines are connected only if you assign the sorted DataFrame back to person or chain the methods; otherwise the first line does nothing.
-#Yes, they are connected — because the second line runs on the result of the first line.
+
+**#Yes, they are connected — because the second line runs on the result of the first line.
 -But how they are connected depends on how you write them.**
 
 
