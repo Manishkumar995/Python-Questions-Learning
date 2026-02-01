@@ -48,7 +48,7 @@ def department_highest_salary(employee: pd.DataFrame, department: pd.DataFrame) 
     # Returning the final result in the desired order
     return result[['Department', 'Employee', 'Salary']]
 
-3= ranking the scores by pandas=
+**3= ranking the scores by pandas=**
 ```python
 import pandas as pd
 
@@ -65,8 +65,8 @@ def delete_duplicate_emails(person: pd.DataFrame) -> None:
     person.sort_values(by='id',ascending=True,inplace=True)
     # Drop the duplicates based on email.
     person.drop_duplicates(subset='email', keep='first', inplace=True).
-**
-** What happens step by step**
+
+**What happens step by step
 ``python sort_values(...)
 -Creates a new DataFrame
 -Sorted by id descending
@@ -80,7 +80,7 @@ For duplicate emails, the row with highest id is kept
 One-line summary-
 The lines are connected only if you assign the sorted DataFrame back to person or chain the methods; otherwise the first line does nothing.
 #Yes, they are connected — because the second line runs on the result of the first line.
--But how they are connected depends on how you write them.
+-But how they are connected depends on how you write them.**
 
 
    `
