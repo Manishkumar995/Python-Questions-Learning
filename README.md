@@ -24,7 +24,7 @@ def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
         return pd.DataFrame({f'getNthHighestSalary({N})': [None]})
 
     # Get the N-th highest salary
-    nth_salary = unique_salaries.iloc[N-1]
+    nth_salary = unique_salaries.iloc[N-1] ```python
 
 2.- Find the highest salary in every department?
 
@@ -46,7 +46,7 @@ def department_highest_salary(employee: pd.DataFrame, department: pd.DataFrame) 
     })
         
     # Returning the final result in the desired order
-    return result[['Department', 'Employee', 'Salary']]
+    return result[['Department', 'Employee', 'Salary']]```python
 
 **3= ranking the scores by pandas=**
 ```python
@@ -57,14 +57,14 @@ def order_scores(scores: pd.DataFrame) -> pd.DataFrame:
     result_df=scores.drop('id',axis=1).sort_values(by='score',ascending=False)
     return result_df
 4.= Delete Duplicate Emails
-import pandas as pd
+```python import pandas as pd
 
 # Modify Person in place
 def delete_duplicate_emails(person: pd.DataFrame) -> None:
     # Sort the rows based on id (Ascending order)
     person.sort_values(by='id',ascending=True,inplace=True)
     # Drop the duplicates based on email.
-    person.drop_duplicates(subset='email', keep='first', inplace=True).
+    person.drop_duplicates(subset='email', keep='first', inplace=True).```python
 
 **What happens step by step
 ``python sort_values(...)
