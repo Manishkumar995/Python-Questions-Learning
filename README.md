@@ -64,9 +64,9 @@ def delete_duplicate_emails(person: pd.DataFrame) -> None:
     # Sort the rows based on id (Ascending order)
     person.sort_values(by='id',ascending=True,inplace=True)
     # Drop the duplicates based on email.
-    person.drop_duplicates(subset='email', keep='first', inplace=True) ```python
-
-** What happens step by step
+    person.drop_duplicates(subset='email', keep='first', inplace=True).
+**
+** What happens step by step**
 ``python sort_values(...)
 -Creates a new DataFrame
 -Sorted by id descending
