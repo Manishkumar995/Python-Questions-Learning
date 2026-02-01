@@ -56,6 +56,30 @@ def order_scores(scores: pd.DataFrame) -> pd.DataFrame:
     scores['rank']= scores['score'].rank(method='dense', ascending=False)
     result_df=scores.drop('id',axis=1).sort_values(by='score',ascending=False)
     return result_df
+4.= Delete Duplicate Emails
+import pandas as pd
+
+# Modify Person in place
+def delete_duplicate_emails(person: pd.DataFrame) -> None:
+    # Sort the rows based on id (Ascending order)
+    person.sort_values(by='id',ascending=True,inplace=True)
+    # Drop the duplicates based on email.
+    person.drop_duplicates(subset='email', keep='first', inplace=True)
+#What happens step by step
+``python sort_values(...)
+-Creates a new DataFrame
+-Sorted by id descending
+-Assigned back to person
+``pythn= drop_duplicates(...)
+-Runs on the sorted DataFrame
+- Keeps the first email per group
+- Modifies person in place
+✔ Result:
+For duplicate emails, the row with highest id is kept
+One-line summary-
+The lines are connected only if you assign the sorted DataFrame back to person or chain the methods; otherwise the first line does nothing.
+#Yes, they are connected — because the second line runs on the result of the first line.
+-But how they are connected depends on how you write them.
 
 
    `
