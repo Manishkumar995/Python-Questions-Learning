@@ -87,6 +87,56 @@ The lines are connected only if you assign the sorted DataFrame back to person o
 **#Yes, they are connected — because the second line runs on the result of the first line.
 -But how they are connected depends on how you write them.**
 
+**5. Find Total Time Spent by Each Employee**
+``` import pandas as pd
+
+def total_time(employees: pd.DataFrame) -> pd.DataFrame:
+    employees['time_spent']=employees['out_time']- employees['in_time']
+    result=employees.groupby(['emp_id', 'event_day'])['time_spent'].sum().reset_index()
+    result.rename(columns={'event_day': 'day', 'time_spent':'total_time'},inplace=True)
+    return result
+```
+**Step 1: employees.groupby(['emp_id', 'event_day'])**
+What this does-
+
+Splits rows into groups based on emp_id + event_day
+
+**Each unique combination forms one group**
+
+**Groups formed internally**
+
+(emp_id=1, day=2024-01-01) → [3, 5]
+
+(emp_id=1, day=2024-01-02) → [4]
+
+(emp_id=2, day=2024-01-01) → [6, 2]
+
+**⚠️ Nothing is calculated yet — just grouping. 
+Step 2: ['time_spent']
+.groupby(... )['time_spent']**
+
+
+**This means:**
+
+**“From each group, only look at the time_spent column.”**
+
+Now each group holds only numbers:
+
+(1, 2024-01-01) → [3, 5]
+
+(1, 2024-01-02) → [4]
+
+(2, 2024-01-01) → [6, 2]
+
+**Step 3: .sum()**
+
+.sum()
+
+
+Now Pandas actually computes something.
+
+It sums time_spent within each group.
+
 
    `
     
