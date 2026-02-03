@@ -173,11 +173,11 @@ player 3 → [2024-01-07]
 .groupby('player_id')['event_date']**
 
 
-This means:
+**This means:**
 
 “From each player group, only keep the event_date column.”
 
-So now groups look like:
+- So now groups look like:
 
 player 1 → dates only
 
@@ -185,13 +185,14 @@ player 2 → dates only
 
 player 3 → dates only
 
-Step 3: .min()
+**- Step 3: .min()**
+
 .min()
 
 
-Now Pandas calculates.
+**Now Pandas calculates.
 
-For each player group, it finds the earliest date.
+For each player group, it finds the earliest date.**
 
 Results (still NOT a DataFrame yet):
 
@@ -202,15 +203,15 @@ player_id	min(event_date)
 
 Internally this is a Series with player_id as index.
 
-Step 4: .reset_index()
+**Step 4: .reset_index()**
+
 .reset_index()
 
+- This converts the index (player_id) back into a normal column.
 
-This converts the index (player_id) back into a normal column.
+- **Final result DataFrame:**
 
-Final result DataFrame:
-
-player_id	event_date
+**player_id**	**event_date**
 1	2024-01-01
 2	2024-01-02
 3	2024-01-07
