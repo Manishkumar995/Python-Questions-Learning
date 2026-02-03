@@ -137,6 +137,104 @@ Now Pandas actually computes something.
 
 It sums time_spent within each group.
 
+**6. . Game Play Analysis I**- **find the earliest event date for every player**
+```
+import pandas as pd
+
+def game_analysis(activity: pd.DataFrame) -> pd.DataFrame:
+    # Sort the DataFrame by player_id and event_date
+    activity = activity.sort_values(by=['player_id', 'event_date'])
+    
+    # Group by player_id and select the minimum event_date for each player
+    result = activity.groupby('player_id')['event_date'].min().reset_index()
+    result.rename(columns={'event_date': 'first_login'}, inplace=True)
+    
+    return result
+```
+
+**Step 1: activity.groupby('player_id')**
+What this does
+
+**Splits rows into groups based on player_id**
+
+One group per unique player
+
+Internal groups:
+
+player 1 → [2024-01-05, 2024-01-01]
+
+player 2 → [2024-01-03, 2024-01-02]
+
+player 3 → [2024-01-07]
+
+⚠️ No calculation yet.
+
+**Step 2: ['event_date']
+.groupby('player_id')['event_date']**
+
+
+This means:
+
+“From each player group, only keep the event_date column.”
+
+So now groups look like:
+
+player 1 → dates only
+
+player 2 → dates only
+
+player 3 → dates only
+
+Step 3: .min()
+.min()
+
+
+Now Pandas calculates.
+
+For each player group, it finds the earliest date.
+
+Results (still NOT a DataFrame yet):
+
+player_id	min(event_date)
+1	2024-01-01
+2	2024-01-02
+3	2024-01-07
+
+Internally this is a Series with player_id as index.
+
+Step 4: .reset_index()
+.reset_index()
+
+
+This converts the index (player_id) back into a normal column.
+
+Final result DataFrame:
+
+player_id	event_date
+1	2024-01-01
+2	2024-01-02
+3	2024-01-07
+Why this is done this way
+What problem this solves
+
+“For each player, find their first activity date.”
+
+That’s it.
+
+SQL equivalent (important)
+SELECT player_id, MIN(event_date) AS event_date
+FROM activity
+GROUP BY player_id;
+
+
+This Pandas line is exactly that.
+
+**Key points people miss**=
+- ❌= .groupby() does not calculate
+- ❌= ['event_date'] does not calculate
+- ✅ =.min() does calculate
+- ✅ =.reset_index() makes it usable
+
 
    `
     
