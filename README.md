@@ -236,6 +236,57 @@ This Pandas line is exactly that.
 - ✅ =.min() does calculate
 - ✅ =.reset_index() makes it usable
 
+ **Group Sold Products By The Date**-
+
+ ```
+import pandas as pd
+
+def categorize_products(activities: pd.DataFrame) -> pd.DataFrame:
+    df = (activities.drop_duplicates()
+                    .groupby('sell_date')['product'].agg(
+                        num_sold = 'count',
+                        products = list)
+                    .reset_index())
+
+    df.products = df.products.apply(lambda x: ','.join(sorted(x)))
+
+    return df
+```
+.agg(...) — THIS IS THE CORE
+.agg(
+    num_sold='count',
+    products=list
+)
+
+**.agg()= runs each aggregation function once per group, and each result becomes one cell in the output row.**
+**This means:**
+
+“For each group, run multiple aggregation functions on the grouped values, and store the results in named columns.”
+
+Let’s execute it group by group.
+
+**Step 4: How Pandas executes .agg() internally**
+🔹 For group 2024-01-01
+
+**Grouped values:**
+
+['Apple', 'Banana']
+
+
+**Now Pandas applies each aggregation:**
+
+1️⃣ num_sold = 'count'
+count(['Apple', 'Banana']) → 2
+
+2️⃣ products = list
+list(['Apple', 'Banana']) → ['Apple', 'Banana']
+
+
+**So Pandas produces one row**
+sell_date = 2024-01-01
+num_sold = 2
+products = ['Apple', 'Banana']
+
 
    `
     
