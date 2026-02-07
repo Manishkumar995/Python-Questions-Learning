@@ -287,6 +287,42 @@ sell_date = 2024-01-01
 num_sold = 2
 products = ['Apple', 'Banana']
 
+**Replace Employee ID With The Unique Identifier**
+
+```
+import pandas as pd
+
+def replace_employee_id(employees: pd.DataFrame, employee_uni: pd.DataFrame) -> pd.DataFrame:
+    merged=employees.merge(employee_uni, on='id', how='left')
+    result=merged[['unique_id','name']]
+    return result
+```
+**merge(...)**
+merged = employees.merge(employee_uni, on='id', how='left')
+
+**What this means in plain English:**
+
+**“Join employees with employee_uni using id,**
+keep all rows from employees,
+and bring matching data from employee_uni when available.”
+
+Break it down word by word
+employees.merge(employee_uni, ...)
+
+Merge employee_uni into employees
+
+on='id'
+
+Match rows where employees.id == employee_uni.id
+
+**how='left'**
+
+LEFT JOIN
+
+Keep all rows from the left table (employees)
+
+If there’s no match → fill with NaN
+
 
    `
     
