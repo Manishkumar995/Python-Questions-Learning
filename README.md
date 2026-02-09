@@ -324,5 +324,13 @@ Keep all rows from the left table (employees)
 If there’s no match → fill with NaN
 
 
+
+```import pandas as pd
+def find_managers(employee: pd.DataFrame) -> pd.DataFrame:
+    reports = employee.groupby('managerId').size().reset_index(name='count')
+    winners = reports[reports['count'] >= 5]
+    result = winners.merge(employee, left_on='managerId', right_on='id')[['name']]
+    return result
+
    `
     
