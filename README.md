@@ -336,6 +336,40 @@ def find_managers(employee: pd.DataFrame) -> pd.DataFrame:
 
 **Output their id, first name, last name, department ID, and current salary. Order your list by employee ID in ascending order**.
 
+```
+import pandas as pd
 
+# Start writing code
+df = ms_employee_salary
+df.groupby('id').max().reset_index()
+```
+**Common mistake**
+
+People think:
+
+“Group by id and get max salary”
+
+But if you write:
+
+df.groupby('id').max()
+
+
+**You are also aggregating:**
+
+**first_name,
+
+last_name,
+
+any other column**
+
+**Now here’s the important part**
+
+**.max() applies to ALL non-grouping columns.**
+
+It does NOT ignore text columns.
+
+For strings:
+
+**.max() returns the alphabetically largest value**
    `
     
