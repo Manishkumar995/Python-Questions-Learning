@@ -332,5 +332,10 @@ def find_managers(employee: pd.DataFrame) -> pd.DataFrame:
     result = winners.merge(employee, left_on='managerId', right_on='id')[['name']]
     return result
 
+```
+
+**Output their id, first name, last name, department ID, and current salary. Order your list by employee ID in ascending order**.
+
+
    `
     
